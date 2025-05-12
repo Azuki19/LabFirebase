@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../services/firebaseConfig'; // Asegúrate de que db esté importado
-import { doc, setDoc } from 'firebase/firestore'; // Importar doc y setDoc
+import { auth, db } from '../services/firebaseConfig';
+import { doc, setDoc } from 'firebase/firestore';
 
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
@@ -19,12 +19,12 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Crear cuenta en Firebase Authentication
+
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Crear un documento de usuario en Firestore
-      const userRef = doc(db, 'users', user.uid);  // Obtener referencia del documento
+
+      const userRef = doc(db, 'users', user.uid);
       await setDoc(userRef, {
         uid: user.uid,
         email: user.email,
@@ -32,11 +32,11 @@ const RegisterForm = () => {
         birthdate: birthdate,
       });
 
-      // Guardar en Redux y localStorage
+
       dispatch(setUser({ uid: user.uid, email: user.email }));
       localStorage.setItem('user', JSON.stringify({ uid: user.uid, email: user.email }));
 
-      // Redirigir al dashboard
+
       navigate('/dashboard');
     } catch (err) {
       setError('Error al crear la cuenta: ' + err.message);
@@ -44,10 +44,10 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
+    <section>
       <h2>Crear cuenta</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <section>
           <label>Correo electrónico</label>
           <input
             type="email"
@@ -55,8 +55,8 @@ const RegisterForm = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Contraseña</label>
           <input
             type="password"
@@ -64,8 +64,8 @@ const RegisterForm = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Nombre de usuario</label>
           <input
             type="text"
@@ -73,8 +73,8 @@ const RegisterForm = () => {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Fecha de nacimiento</label>
           <input
             type="date"
@@ -82,11 +82,11 @@ const RegisterForm = () => {
             onChange={(e) => setBirthdate(e.target.value)}
             required
           />
-        </div>
+        </section>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit">Registrar</button>
       </form>
-    </div>
+    </section>
   );
 };
 

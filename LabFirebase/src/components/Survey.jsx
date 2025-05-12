@@ -1,7 +1,7 @@
-// ProfileCompletion.js (Encuesta para completar el perfil)
+// Survey.js
 import React, { useState } from 'react';
 
-const ProfileCompletion = ({ onComplete }) => {
+const Survey = ({ onComplete }) => {
   const [step, setStep] = useState(1);
   const [avatar, setAvatar] = useState(null);
   const [description, setDescription] = useState('');
@@ -36,36 +36,36 @@ const ProfileCompletion = ({ onComplete }) => {
 
     setError('');
     if (step < 3) {
-      setStep(step + 1); // Avanzar al siguiente paso
+      setStep(step + 1);
     } else {
-      // Al finalizar la encuesta, guardar los datos y marcar el perfil como completo
+
       onComplete({ avatar, description, interests });
     }
   };
 
   return (
-    <div>
+    <section>
       <h3>Completa tu perfil</h3>
       {step === 1 && (
-        <div>
+        <section>
           <h4>Selecciona tu imagen de perfil</h4>
           <button onClick={() => handleAvatarSelect('avatar1')}>Avatar 1</button>
           <button onClick={() => handleAvatarSelect('avatar2')}>Avatar 2</button>
           <button onClick={() => handleAvatarSelect('avatar3')}>Avatar 3</button>
-        </div>
+        </section>
       )}
       {step === 2 && (
-        <div>
+        <section>
           <h4>Escribe una descripción personal</h4>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Escribe algo sobre ti..."
           ></textarea>
-        </div>
+        </section>
       )}
       {step === 3 && (
-        <div>
+        <section>
           <h4>Selecciona tus intereses personales</h4>
           <label>
             <input
@@ -103,14 +103,14 @@ const ProfileCompletion = ({ onComplete }) => {
             />
             Juegos
           </label>
-        </div>
+        </section>
       )}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button onClick={handleNextStep}>
         {step < 3 ? 'Siguiente' : 'Guardar perfil'}
       </button>
-    </div>
+    </section>
   );
 };
 
-export default ProfileCompletion;
+export default Survey;

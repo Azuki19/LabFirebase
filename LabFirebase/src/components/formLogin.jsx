@@ -20,13 +20,13 @@ const FormLogin = () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Guardamos el usuario en Redux
+
       dispatch(setUser({ uid: user.uid, email: user.email }));
 
-      // Guardamos el usuario en localStorage (opcional)
+
       localStorage.setItem('user', JSON.stringify({ uid: user.uid, email: user.email }));
 
-      // Redirigimos al Dashboard
+
       navigate('/dashboard');
     } catch (err) {
       setError('Error al iniciar sesión: ' + err.message);
@@ -34,10 +34,10 @@ const FormLogin = () => {
   };
 
   return (
-    <div>
+    <section>
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <section>
           <label>Correo electrónico</label>
           <input
             type='email'
@@ -45,8 +45,8 @@ const FormLogin = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Contraseña</label>
           <input
             type='password'
@@ -54,11 +54,11 @@ const FormLogin = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
+        </section>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type='submit'>Iniciar sesión</button>
       </form>
-    </div>
+    </section>
   );
 };
 

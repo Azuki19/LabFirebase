@@ -1,17 +1,24 @@
-// UserProfile.js (Resumen del perfil)
+// ProfileCard.js
 import React from 'react';
 
-const UserProfile = ({ userProfile, isProfileComplete }) => {
+const ProfileCard = ({ userProfile, isProfileComplete }) => {
   return (
-    <div>
+    <section>
       <h3>Resumen del perfil</h3>
       <p><strong>Correo electrónico:</strong> {userProfile.email}</p>
       <p><strong>Nombre de usuario:</strong> {userProfile.username}</p>
       <p><strong>Fecha de nacimiento:</strong> {userProfile.birthdate}</p>
-      {/* Aquí mostramos la encuesta si el perfil no está completo */}
-      {!isProfileComplete && <p>Perfil incompleto, por favor complete la encuesta a continuación.</p>}
-    </div>
+
+      {userProfile.avatar && <p><strong>Imagen de perfil:</strong> {userProfile.avatar}</p>}
+      {userProfile.description && <p><strong>Descripción:</strong> {userProfile.description}</p>}
+      {userProfile.interests && userProfile.interests.length > 0 && (
+        <p><strong>Intereses:</strong> {userProfile.interests.join(', ')}</p>
+      )}
+
+
+      {!isProfileComplete && <p>Perfil incompleto. Por favor, completa la encuesta.</p>}
+    </section>
   );
 };
 
-export default UserProfile;
+export default ProfileCard;
