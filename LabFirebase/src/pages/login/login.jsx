@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FormLogin from '../../components/formLogin';
+import './login.css';
 
 function Login() {
   return (
     <section>
-      <h1>SOY login</h1>
       <FormLogin></FormLogin>
 
 

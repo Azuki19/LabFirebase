@@ -1,6 +1,6 @@
 // ProfileCard.js
 import React from 'react';
-
+import './profileCard.css';
 const ProfileCard = ({ userProfile, isProfileComplete }) => {
   return (
     <section>

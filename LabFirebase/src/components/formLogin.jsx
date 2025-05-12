@@ -5,6 +5,7 @@ import { setUser } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../services/firebaseConfig';
+import '../pages/login/login.css'
 
 const FormLogin = () => {
   const [email, setEmail] = useState('');

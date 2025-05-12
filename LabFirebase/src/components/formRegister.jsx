@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../services/firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
+import '../pages/register/register'
 
 const RegisterForm = () => {
   const [email, setEmail] = useState('');

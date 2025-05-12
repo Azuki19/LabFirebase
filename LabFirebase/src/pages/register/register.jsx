@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RegisterForm from '../../components/formRegister';
+import './register.css';
 
 function Register() {
   return (
     <section>
-      <h1>SOY REGISTER</h1>
+      
       <RegisterForm></RegisterForm>
 
 
